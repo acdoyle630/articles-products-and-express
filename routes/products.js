@@ -33,7 +33,7 @@ router.route('/')
 
 router.route('/:id')
   .get(( req, res ) =>{
-    res.send('hit id get');
+    res.send(productDataBase.get(req.path));
   })
 
 
@@ -43,9 +43,12 @@ router.route('/:id')
 
   .put(( req, res) =>{
     if(productDataBase.put(req) === true){
+      res.json({success: true});
       //get product by id
-    res.json({success: true});
+     //res.redirect(`/products${req.body.path}`);
+
     } else{
+
       //productsNew ID
       res.json({success: false});
     }

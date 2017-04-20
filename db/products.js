@@ -7,8 +7,13 @@ const productDataBase = () =>{
   let productNames = [];
   currentId = 1;
 
-  function get (){
-    console.log('got');
+  function get ( id ){
+    if(id){
+      console.log(id);
+      serachId = id.split('');
+      serachId.shift();
+      return checkForProductById(serachId.join());
+    }
     return products;
   }
 
