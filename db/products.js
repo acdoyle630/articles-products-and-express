@@ -30,8 +30,18 @@ const productDataBase = () =>{
     searchedId.shift();
     console.log("SEARCHED ID : "+searchedId);
     let currentProduct = product.body;
-    checkForProductById(searchedId.join(), currentProduct);
-    //console.log(productById);
+    let productById = checkForProductById(searchedId.join(), currentProduct);
+    if(productById === false){
+      return false;
+    } else {
+      console.log(productById);
+      productById.name = product.body.name;
+      productById.inventory = product.body.inventory;
+      productById.price = product.body.price;
+      console.log(productById);
+      console.log(products);
+      return true;
+    }
    }
 
   function checkForProduct( name ){
@@ -42,13 +52,16 @@ const productDataBase = () =>{
 
   function checkForProductById(id, currentProduct){
     console.log('hit function');
+    console.log(typeof id);
     console.log(id);
-    console.log(products[0].id);
-    for(var i = 0; i < products.length; i++){
-      if(id === products[i].id){
-        console.log(products[i]);
-      }
+    if(products.length === 0){
+      return false;
     }
+    for(var i = 0; i < products.length; i++){
+      if(products[i].id == id){
+        return products[i];
+      }
+    } return false;
   }
 
   return{

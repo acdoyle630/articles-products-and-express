@@ -42,7 +42,11 @@ router.route('/:id')
   })
 
   .put(( req, res) =>{
-    productDataBase.put(req);
+    if(productDataBase.put(req) === true){
+    res.json({success: true});
+    } else{
+      res.json({success: false});
+    }
   })
 
   .delete (( req, res ) =>{
