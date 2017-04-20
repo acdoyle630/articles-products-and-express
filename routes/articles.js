@@ -7,5 +7,14 @@ module.exports = router;
 
 router.route('/')
   .get(( req, res ) => {
-    res.send('hit');
+    res.send('hit get');
+  })
+  .post(( req, res ) => {
+    res.send('hit post');
+  })
+  .put(( req, res ) => {
+    res.send('hit put');
+  })
+  .delete(( req, res ) =>{
+    res.send('hit delete');
   });
