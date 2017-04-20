@@ -9,6 +9,7 @@ const productDataBase = () =>{
 
   function get (){
     console.log('got');
+    return products;
   }
 
   function post ( product ){

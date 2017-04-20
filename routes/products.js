@@ -8,7 +8,7 @@ module.exports = router;
 
 router.route('/')
   .get(( req, res ) => {
-    res.send('hit get');
+    res.send(productDataBase.get());
   })
 
 
@@ -43,8 +43,10 @@ router.route('/:id')
 
   .put(( req, res) =>{
     if(productDataBase.put(req) === true){
+      //get product by id
     res.json({success: true});
     } else{
+      //productsNew ID
       res.json({success: false});
     }
   })
