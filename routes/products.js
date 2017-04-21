@@ -8,7 +8,11 @@ module.exports = router;
 
 router.route('/')
   .get(( req, res ) => {
-    res.send(productDataBase.get());
+    let productData = (productDataBase.get());
+    console.log(productData);
+    res.render('products', {
+      products: productData
+    });
   })
 
 
