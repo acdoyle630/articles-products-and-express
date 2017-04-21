@@ -9,7 +9,6 @@ module.exports = router;
 router.route('/')
   .get(( req, res ) => {
     let productData = (productDataBase.get());
-    console.log(productData);
     res.render('index', {
       products: productData
     });
@@ -18,7 +17,6 @@ router.route('/')
   .post(( req, res ) => {
     if(productDataBase.post(req.body) === true){
     let productData = (productDataBase.get());
-    console.log(productData);
     res.render('index', {
       products: productData
     });
@@ -43,7 +41,6 @@ router.route('/new')
 router.route('/:id')
   .get(( req, res ) =>{
     let productData = productDataBase.get(req.path);
-    console.log(productData);
      res.render('product', {
        products: productData
      });
@@ -78,10 +75,8 @@ router.route('/:id/edit')
 
    let idpath = (req.path.split('/'));
    idpath.pop();
-   console.log(idpath.join('/'));
 
 let productData = productDataBase.get(idpath.join('/'));
-   console.log(productData);
      res.render('product_edit', {
        products: productData
      });
