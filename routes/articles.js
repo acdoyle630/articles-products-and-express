@@ -2,12 +2,14 @@
 
 const express = require('express');
 const router = express. Router();
+const articleDataBase = require('../db/articles');
 
 module.exports = router;
 
 router.route('/')
   .get(( req, res ) => {
-    res.send('hit get');
+    let articleData = (articleDataBase.get());
+
   })
 
 

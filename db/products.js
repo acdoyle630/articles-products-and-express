@@ -23,29 +23,22 @@ const productDataBase = () =>{
       currentId ++;
       products.push(product);
       productNames.push(product.name);
-      console.log(products);
       return true;
     }
   }
 
   function put( product ){
     let id = product.path;
-    console.log("ID: " +id);
     let searchedId = (id.split(''));
-    console.log('SEARCHED ID ARR : ' + searchedId);
     searchedId.shift();
-    console.log("SEARCHED ID : "+searchedId);
     let currentProduct = product.body;
     let productById = checkForProductById(searchedId.join(), currentProduct);
     if(productById === false){
       return false;
     } else {
-      console.log(productById);
       productById.name = product.body.name;
       productById.inventory = product.body.inventory;
       productById.price = product.body.price;
-      console.log(productById);
-      console.log(products);
       return true;
     }
    }
@@ -54,11 +47,8 @@ const productDataBase = () =>{
     temp.shift();
     productId = temp.join();
     let productToDelete = checkForProductById(productId);
-    console.log(productToDelete);
     products.splice(products.indexOf(productToDelete),1);
     productNames.splice(productNames.indexOf(productToDelete.name));
-    console.log(products);
-    console.log(productNames);
   }
 
   function checkForProduct( name ){
@@ -68,9 +58,6 @@ const productDataBase = () =>{
   }
 
   function checkForProductById(id, currentProduct){
-    console.log('hit function');
-    console.log(typeof id);
-    console.log(id);
     if(products.length === 0){
       return false;
     }
