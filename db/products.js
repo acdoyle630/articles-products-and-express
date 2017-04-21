@@ -12,9 +12,11 @@ const productDataBase = () =>{
     console.log(id);
     serachId = id.split('');
     serachId.shift();
+    //console.log(checkForProductById(serachId.join()));
     return checkForProductById(serachId.join());
-  }
+  } else{
     return products;
+  }
   }
 
   function post ( product ){

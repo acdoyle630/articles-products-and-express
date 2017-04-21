@@ -10,7 +10,7 @@ router.route('/')
   .get(( req, res ) => {
     let productData = (productDataBase.get());
     console.log(productData);
-    res.render('products', {
+    res.render('index', {
       products: productData
     });
   })
@@ -37,7 +37,11 @@ router.route('/')
 
 router.route('/:id')
   .get(( req, res ) =>{
-    res.send(productDataBase.get(req.path));
+    let productData = productDataBase.get(req.path);
+    console.log(productData);
+     res.render('product', {
+       products: productData
+     });
   })
 
 
