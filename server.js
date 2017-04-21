@@ -1,6 +1,7 @@
 /*jshint esversion: 6*/
 
 const express = require('express');
+const override = require('method-override');
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const PORT = 3000;
@@ -16,6 +17,8 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 app.use(express.static('public'));
+
+app.use(override('_method'));
 
 app.use(bodyParser.urlencoded({extended: false}));
 

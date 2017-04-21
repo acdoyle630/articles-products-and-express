@@ -65,3 +65,23 @@ router.route('/:id')
   .delete (( req, res ) =>{
     productDataBase.deleteProduct(req.path);
   });
+
+router.route('/:id/edit')
+  .get((req,res) =>{
+
+   let idpath = (req.path.split('/'));
+   idpath.pop();
+   console.log(idpath.join('/'));
+
+
+
+
+
+
+
+   let productData = productDataBase.get(idpath.join('/'));
+   console.log(productData);
+     res.render('product_edit', {
+       products: productData
+     });
+});
