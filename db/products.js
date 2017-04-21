@@ -12,13 +12,11 @@ const productDataBase = () =>{
     console.log(id);
     serachId = id.split('');
     serachId.shift();
-    //console.log(checkForProductById(serachId.join()));
     return checkForProductById(serachId.join());
   } else{
     return products;
   }
   }
-
   function post ( product ){
     if(checkForProduct(product.name) === true){
       product.id = currentId;
@@ -60,7 +58,6 @@ const productDataBase = () =>{
     products.splice(products.indexOf(productToDelete),1);
     console.log(products);
   }
-
 
   function checkForProduct( name ){
     if(productNames.indexOf(name) < 0){

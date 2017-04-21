@@ -15,7 +15,6 @@ router.route('/')
     });
   })
 
-
   .post(( req, res ) => {
     if(productDataBase.post(req.body) === true){
     let productData = (productDataBase.get());
@@ -23,18 +22,14 @@ router.route('/')
     res.render('index', {
       products: productData
     });
-
     } else {
-      //Send to product/new
       res.json({success: false});
     }
   })
 
-
   .put(( req, res ) => {
     res.send('hit put');
   })
-
 
   .delete(( req, res ) =>{
     res.send('hit delete');
@@ -54,7 +49,6 @@ router.route('/:id')
      });
   })
 
-
   .post(( req, res) =>{
     res.send( 'hit id post');
   })
@@ -66,12 +60,7 @@ router.route('/:id')
       products: productData
     });
 
-      //get product by id
-     //res.redirect(`/products${req.body.path}`);
-
     } else{
-
-      //productsNew ID
       res.json({success: false});
     }
   })
@@ -87,13 +76,7 @@ router.route('/:id/edit')
    idpath.pop();
    console.log(idpath.join('/'));
 
-
-
-
-
-
-
-   let productData = productDataBase.get(idpath.join('/'));
+let productData = productDataBase.get(idpath.join('/'));
    console.log(productData);
      res.render('product_edit', {
        products: productData
