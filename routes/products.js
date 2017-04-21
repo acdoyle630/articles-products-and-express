@@ -51,7 +51,11 @@ router.route('/:id')
 
   .put(( req, res) =>{
     if(productDataBase.put(req) === true){
-      res.json({success: true});
+      let productData = productDataBase.get();
+      res.render('index', {
+      products: productData
+    });
+
       //get product by id
      //res.redirect(`/products${req.body.path}`);
 
