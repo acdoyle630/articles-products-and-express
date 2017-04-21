@@ -67,6 +67,10 @@ router.route('/:id')
 
   .delete (( req, res ) =>{
     productDataBase.deleteProduct(req.path);
+    let productData = productDataBase.get();
+      res.render('index', {
+      products: productData
+    });
   });
 
 router.route('/:id/edit')

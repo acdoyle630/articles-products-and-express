@@ -56,7 +56,9 @@ const productDataBase = () =>{
     let productToDelete = checkForProductById(productId);
     console.log(productToDelete);
     products.splice(products.indexOf(productToDelete),1);
+    productNames.splice(productNames.indexOf(productToDelete.name));
     console.log(products);
+    console.log(productNames);
   }
 
   function checkForProduct( name ){

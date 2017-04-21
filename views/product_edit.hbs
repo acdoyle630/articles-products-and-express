@@ -9,3 +9,7 @@
   Price<input type="text" name='price'>
   <button type= 'submit'>Change</button>
 </form>
+
+<form method = 'POST' action="/products/{{products.id}}?_method=DELETE" enctype = 'application/x-www-form-urlencoded'>
+  <button type='submit'>DELETE</button>
+</form>
