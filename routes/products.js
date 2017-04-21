@@ -18,7 +18,12 @@ router.route('/')
 
   .post(( req, res ) => {
     if(productDataBase.post(req.body) === true){
-    res.json({success: true});
+    let productData = (productDataBase.get());
+    console.log(productData);
+    res.render('index', {
+      products: productData
+    });
+
     } else {
       //Send to product/new
       res.json({success: false});
@@ -33,6 +38,11 @@ router.route('/')
 
   .delete(( req, res ) =>{
     res.send('hit delete');
+  });
+
+router.route('/new')
+  .get((req,res) =>{
+    res.render('product_new');
   });
 
 router.route('/:id')
