@@ -55,5 +55,5 @@ router.route('/:id')
   })
 
   .delete (( req, res ) =>{
-    res.send( 'hit id delete');
+    productDataBase.deleteProduct(req.path);
   });

@@ -9,11 +9,11 @@ const productDataBase = () =>{
 
   function get ( id ){
     if(id){
-      console.log(id);
-      serachId = id.split('');
-      serachId.shift();
-      return checkForProductById(serachId.join());
-    }
+    console.log(id);
+    serachId = id.split('');
+    serachId.shift();
+    return checkForProductById(serachId.join());
+  }
     return products;
   }
 
@@ -49,6 +49,16 @@ const productDataBase = () =>{
       return true;
     }
    }
+  function deleteProduct(id){
+    temp = id.split('');
+    temp.shift();
+    productId = temp.join();
+    let productToDelete = checkForProductById(productId);
+    console.log(productToDelete);
+    products.splice(products.indexOf(productToDelete),1);
+    console.log(products);
+  }
+
 
   function checkForProduct( name ){
     if(productNames.indexOf(name) < 0){
@@ -74,6 +84,7 @@ const productDataBase = () =>{
     get,
     post,
     put,
+    deleteProduct,
   };
 };
 
