@@ -2,7 +2,20 @@
 <h1>Product List</h1>
 
 {{#each products}}
-  <h2>Product {{name}}</h2>
-  <h3>Price ${{price}}</h3>
-  <h3>Available {{inventory}}</h3>
+  <h2>Product: {{name}}</h2>
+  <h3>Price: ${{price}}</h3>
+  <h3>Available: {{inventory}}</h3>
+  <h3>ID: {{id}}</h3>
+  <form action="products/{{id}}/edit">
+    <button>EDIT</button>
+  </form>
 {{/each}}
+
+<form method='GET' action="/">
+  <button>HOME</button>
+</form>
+
+<form method="GET" action="/products/new">
+  <button>NEW</button>
+</form>
+
