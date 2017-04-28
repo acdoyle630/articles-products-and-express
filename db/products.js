@@ -27,50 +27,45 @@ const productDataBase = () =>{
     });
   }
 
-  function post ( name, price, inventory ){
-    return db.one(`INSERT INTO products (name, price, inventory) VALUES ($1,$2,$3) RETURNING *`, [name, price, inventory])
+  function post ( name, category, price, inventory ){
+    return db.one(`INSERT INTO products (name, category, price, inventory) VALUES ($1,$2,$3,$4) RETURNING *`, [name, category, price, inventory])
       .catch(error =>{
         console.log('Product not found:', error);
     });
   }
 
-  function put( name, price, inventory, pId ){
+  function put( name, category, price, inventory, pId ){
     newId = pId.split('/').join('');
-    console.log(`NAME: ${name}, PRICE: ${price}, INVENTORY ${inventory}, ID: ${pId}`);
-    console.log(newId);
-
-
-    return db.none(`UPDATE products SET (name, price, inventory) = ($1, $2, $3) WHERE id = $4`, [name, price, inventory, newId])
+    return db.none(`UPDATE products SET (name, category, price, inventory) = ($1, $2, $3, $4) WHERE id = $5`, [name, category, price, inventory, newId])
       .catch(error =>{
         console.log('ERROR: ', error);
       });
 
    }
   function deleteProduct(id){
-    temp = id.split('');
-    temp.shift();
-    productId = temp.join();
-    let productToDelete = checkForProductById(productId);
-    products.splice(products.indexOf(productToDelete),1);
-    productNames.splice(productNames.indexOf(productToDelete.name));
+    newId = id.split('/').join('');
+    return db.none(`DELETE FROM products WHERE id = $1`, [newId])
+      .catch(error=>{
+        console.log('ERROR: ', error);
+      });
   }
 
-  function checkForProduct( name ){
-    if(productNames.indexOf(name) < 0){
-      return true;
-    }
-  }
+  // function checkForProduct( name ){
+  //   if(productNames.indexOf(name) < 0){
+  //     return true;
+  //   }
+  // }
 
-  function checkForProductById(id){
-    if(products.length === 0){
-      return false;
-    }
-    for(var i = 0; i < products.length; i++){
-      if(products[i].id == id){
-        return products[i];
-      }
-    } return false;
-  }
+  // function checkForProductById(id){
+  //   if(products.length === 0){
+  //     return false;
+  //   }
+  //   for(var i = 0; i < products.length; i++){
+  //     if(products[i].id == id){
+  //       return products[i];
+  //     }
+  //   } return false;
+  // }
 
   return{
     get,

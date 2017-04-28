@@ -3,8 +3,9 @@
 <h1>Product Edit</h1>
 <h1>Product: {{products.name}}</h1>
 
-<form method = 'POST' action="/products/{{products.id}}?_method=PUT/{{products.id}}" enctype= 'application/x-www-form-urlencoded'>
+<form method = 'POST' action="/products/{{products.id}}?_method=PUT" enctype= 'application/x-www-form-urlencoded'>
   Name<input type="text" name='name' >
+  Category<input type='text' name ='category'>
   Inventory<input type="text" name='inventory'>
   Price<input type="text" name='price'>
   <button type= 'submit'>Change</button>

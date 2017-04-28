@@ -10,7 +10,6 @@ router.route('/')
   .get(( req, res ) => {
     productDataBase.get()
       .then((data) => {
-        console.log('data: ' + data);
         res.render('index', {
           products: data
         });
@@ -24,7 +23,9 @@ router.route('/')
     let product_name = req.body.name;
     let product_price = req.body.price;
     let product_inventory = req.body.inventory;
-    productDataBase.post(product_name, product_price, product_inventory)
+    let product_category = req.body.category;
+    console.log(product_category);
+    productDataBase.post(product_name, product_category, product_price, product_inventory)
       .then(data => {
         console.log(data);
         res.render('product', {
@@ -51,7 +52,7 @@ router.route('/:id')
     console.log(req.path);
     productDataBase.getID(req.path)
       .then(data => {
-        console.log(data);
+        console.log('GET DATA' + data);
         res.render('product', {
           products: data
         });
@@ -64,13 +65,17 @@ router.route('/:id')
 
   .put(( req, res) =>{
     let product_name = req.body.name;
+    let product_category = req.body.category;
     let product_price = req.body.price;
     let product_inventory = req.body.
     inventory;
     let product_id = req.path;
-    productDataBase.put(product_name, product_price, product_inventory, product_id)
+    productDataBase.put(product_name, product_category, product_price, product_inventory, product_id)
         .then(data => {
-          console.log(data);
+          console.log('PUT DATA: ' + data);
+      });
+       productDataBase.getID(req.path)
+        .then(data => {
           res.render('product', {
           products: data
         });
@@ -78,11 +83,12 @@ router.route('/:id')
   })
 
   .delete (( req, res ) =>{
-    productDataBase.deleteProduct(req.path);
-    let productData = productDataBase.get();
-      res.render('index', {
-      products: productData
-    });
+    productDataBase.deleteProduct(req.path)
+      .then(data => {
+        console.log('DELETED?');
+        res.render('home');
+      });
+
   });
 
 router.route('/:id/edit')
@@ -90,9 +96,13 @@ router.route('/:id/edit')
 
    let idpath = (req.path.split('/'));
    idpath.pop();
+   newId = idpath.join('');
 
-let productData = productDataBase.get(idpath.join('/'));
-     res.render('product_edit', {
-       products: productData
-     });
+  productDataBase.getID(newId)
+    .then(data =>{
+      console.log(data);
+       res.render('product_edit', {
+         products: data
+       });
+    });
 });
