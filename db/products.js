@@ -34,20 +34,17 @@ const productDataBase = () =>{
     });
   }
 
-  function put( product ){
-    let id = product.path;
-    let searchedId = (id.split(''));
-    searchedId.shift();
-    let currentProduct = product.body;
-    let productById = checkForProductById(searchedId.join(), currentProduct);
-    if(productById === false){
-      return false;
-    } else {
-      productById.name = product.body.name;
-      productById.inventory = product.body.inventory;
-      productById.price = product.body.price;
-      return true;
-    }
+  function put( name, price, inventory, pId ){
+    newId = pId.split('/').join('');
+    console.log(`NAME: ${name}, PRICE: ${price}, INVENTORY ${inventory}, ID: ${pId}`);
+    console.log(newId);
+
+
+    return db.none(`UPDATE products SET (name, price, inventory) = ($1, $2, $3) WHERE id = $4`, [name, price, inventory, newId])
+      .catch(error =>{
+        console.log('ERROR: ', error);
+      });
+
    }
   function deleteProduct(id){
     temp = id.split('');
@@ -64,7 +61,7 @@ const productDataBase = () =>{
     }
   }
 
-  function checkForProductById(id, currentProduct){
+  function checkForProductById(id){
     if(products.length === 0){
       return false;
     }

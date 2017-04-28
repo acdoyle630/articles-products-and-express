@@ -34,11 +34,11 @@ router.route('/')
   })
 
   .put(( req, res ) => {
-    res.send('hit put');
+    res.send('PICK A THING TO PUT');
   })
 
   .delete(( req, res ) =>{
-    res.send('hit delete');
+    res.send('CANNOT DELETE NOTHING DUMBASS');
   });
 
 router.route('/new')
@@ -59,19 +59,28 @@ router.route('/:id')
   })
 
   .post(( req, res) =>{
-    res.send( 'hit id post');
+    res.send( 'CANNOT POST BY ID');
   })
 
   .put(( req, res) =>{
-    if(productDataBase.put(req) === true){
-      let productData = productDataBase.get();
-      res.render('index', {
-      products: productData
-    });
+    let product_name = req.body.name;
+    let product_price = req.body.price;
+    let product_inventory = req.body.
+    inventory;
+    let product_id = req.path;
+    productDataBase.put(product_name, product_price, product_inventory, product_id)
+        .then(data => {
+          console.log(data);
+        });
 
-    } else{
-      res.json({success: false});
-    }
+    //   let productData = productDataBase.get();
+    //   res.render('index', {
+    //   products: productData
+    // });
+
+    // } else{
+    //   res.json({success: false});
+    // }
   })
 
   .delete (( req, res ) =>{
