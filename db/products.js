@@ -30,7 +30,7 @@ const productDataBase = () =>{
   function post ( name, price, inventory ){
     return db.one(`INSERT INTO products (name, price, inventory) VALUES ($1,$2,$3) RETURNING *`, [name, price, inventory])
       .catch(error =>{
-        console.log('ERROR:', error);
+        console.log('Product not found:', error);
     });
   }
 

@@ -71,16 +71,10 @@ router.route('/:id')
     productDataBase.put(product_name, product_price, product_inventory, product_id)
         .then(data => {
           console.log(data);
+          res.render('product', {
+          products: data
         });
-
-    //   let productData = productDataBase.get();
-    //   res.render('index', {
-    //   products: productData
-    // });
-
-    // } else{
-    //   res.json({success: false});
-    // }
+      });
   })
 
   .delete (( req, res ) =>{
