@@ -8,21 +8,29 @@ module.exports = router;
 
 router.route('/')
   .get(( req, res ) => {
-    let productData = (productDataBase.get());
-    res.render('index', {
-      products: productData
-    });
+    productDataBase.get()
+      .then((data) => {
+        console.log('data: ' + data);
+        res.render('index', {
+          products: data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   })
 
   .post(( req, res ) => {
-    if(productDataBase.post(req.body) === true){
-    let productData = (productDataBase.get());
-    res.render('index', {
-      products: productData
-    });
-    } else {
-      res.json({success: false});
-    }
+    let product_name = req.body.name;
+    let product_price = req.body.price;
+    let product_inventory = req.body.inventory;
+    productDataBase.post(product_name, product_price, product_inventory)
+      .then(data => {
+        console.log(data);
+        res.render('product', {
+          products: data
+        });
+      });
   })
 
   .put(( req, res ) => {
@@ -40,10 +48,14 @@ router.route('/new')
 
 router.route('/:id')
   .get(( req, res ) =>{
-    let productData = productDataBase.get(req.path);
-     res.render('product', {
-       products: productData
-     });
+    console.log(req.path);
+    productDataBase.getID(req.path)
+      .then(data => {
+        console.log(data);
+        res.render('product', {
+          products: data
+        });
+      });
   })
 
   .post(( req, res) =>{

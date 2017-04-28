@@ -1,0 +1,19 @@
+
+
+<h1>Article Edit</h1>
+<h1>Article: {{articles.title}}</h1>
+
+<form method = 'POST' action="/articles/{{articles.id}}?_method=PUT" enctype= 'application/x-www-form-urlencoded'>
+  Title<input type="text" name='title' >
+  Body<input type="text" name='body'>
+  Author<input type="text" name='author'>
+  <button type= 'submit'>Change</button>
+</form>
+
+<form method = 'POST' action="/articles/{{articles.id}}?_method=DELETE" enctype = 'application/x-www-form-urlencoded'>
+  <button type='submit'>DELETE</button>
+</form>
+
+<form method='/' action="/">
+  <button>HOME</button>
+</form>

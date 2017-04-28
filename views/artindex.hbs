@@ -1,0 +1,19 @@
+<h1>Article List</h1>
+
+{{#each articles}}
+  <h2>Title: {{title}}</h2>
+  <h3>Body: {{body}}</h3>
+  <h3>Author: {{author}}</h3>
+  <h3>ID: {{id}}</h3>
+  <form action="articles/{{id}}/edit">
+    <button>EDIT</button>
+  </form>
+{{/each}}
+
+<form method='GET' action="/">
+  <button>HOME</button>
+</form>
+
+<form method="GET" action="/articles/new">
+  <button>NEW</button>
+</form>

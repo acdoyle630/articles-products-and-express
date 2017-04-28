@@ -2,29 +2,36 @@
 
 const express = require('express');
 
-const productDataBase = () =>{
-  let products = [];
-  let productNames = [];
-  currentId = 1;
+const pgp = require('pg-promise')();
 
-  function get ( id ){
-    if(id){
-    console.log(id);
-    serachId = id.split('');
-    serachId.shift();
-    return checkForProductById(serachId.join());
-  } else{
-    return products;
+const db = pgp('postgres://house_user:house@localhost:5432/the_house');
+
+module.exports = db;
+
+const productDataBase = () =>{
+
+  function get(){
+    return db.any('SELECT * FROM products', [true])
+      .catch((error) =>{
+        console.log(error);
+    });
   }
+
+  function getID(id){
+    console.log('get id: ' + id);
+    newId = id.split('/').join('');
+    console.log(newId);
+    return db.one(`SELECT * FROM products WHERE products.id = ${newId}`)
+    .catch((error) =>{
+      console.log(error);
+    });
   }
-  function post ( product ){
-    if(checkForProduct(product.name) === true){
-      product.id = currentId;
-      currentId ++;
-      products.push(product);
-      productNames.push(product.name);
-      return true;
-    }
+
+  function post ( name, price, inventory ){
+    return db.one(`INSERT INTO products (name, price, inventory) VALUES ($1,$2,$3) RETURNING *`, [name, price, inventory])
+      .catch(error =>{
+        console.log('ERROR:', error);
+    });
   }
 
   function put( product ){
@@ -73,6 +80,7 @@ const productDataBase = () =>{
     post,
     put,
     deleteProduct,
+    getID,
   };
 };
 
