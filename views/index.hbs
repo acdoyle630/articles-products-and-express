@@ -1,5 +1,6 @@
 
 <h1>Product List</h1>
+<div id ='sortButtons'>
 <form method = 'GET' action = "/products/sort">
   <button>SORT BY LOW PRICE</button>
   </form>
@@ -7,7 +8,7 @@
 <form method = 'GET' action = "/products/sort/high">
   <button>SORT BY HIGH PRICE</button>
   </form>
-
+</div>
 {{#each products}}
 <div class = 'productMain'>
   <h2>Product: {{name}}</h2>

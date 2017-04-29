@@ -9,6 +9,10 @@
   margin-right: 10px;
   color: blue; }
 
+#sortButtons {
+  display: flex;
+  flex-direction: row; }
+
 #productList {
   color: blue; }
 
