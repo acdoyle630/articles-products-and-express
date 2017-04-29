@@ -1,14 +1,23 @@
 
 <h1>Product List</h1>
+<form method = 'GET' action = "/products/sort">
+  <button>SORT BY LOW PRICE</button>
+  </form>
+
+<form method = 'GET' action = "/products/sort/high">
+  <button>SORT BY HIGH PRICE</button>
+  </form>
 
 {{#each products}}
+<div class = 'productMain'>
   <h2>Product: {{name}}</h2>
-  <h3>Category: {{category}}</h3>
-  <h3>Price: ${{price}}</h3>
-  <h3>Available: {{inventory}}</h3>
+  <h2>Category: {{category}}</h3>
+  <h2>Price: ${{price}}</h3>
+  <h2>Available: {{inventory}}</h3>
   <form action="products/{{id}}/edit">
-    <button>EDIT</button>
+    <button id = 'editButton'>EDIT</button>
   </form>
+</div>
 {{/each}}
 
 <form method='GET' action="/">

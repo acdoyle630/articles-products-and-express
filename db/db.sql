@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS products(
   id SERIAL PRIMARY KEY,
   name VARCHAR(50),
   category VARCHAR(50),
-  price TEXT,
-  inventory VARCHAR(30)
+  price INT,
+  inventory INT
 );
 
 CREATE TABLE IF NOT EXISTS articles(

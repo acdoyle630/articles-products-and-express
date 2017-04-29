@@ -46,12 +46,28 @@ const productDataBase = () =>{
       });
   }
 
+  function sort(){
+    return db.any('SELECT * FROM products ORDER BY price', [true])
+      .catch((error) =>{
+        console.log(error);
+      });
+  }
+
+   function sortHigh(){
+    return db.any('SELECT * FROM products ORDER BY price DESC', [true])
+      .catch((error) =>{
+        console.log(error);
+      });
+  }
+
   return{
     get,
     post,
     put,
     deleteProduct,
     getID,
+    sort,
+    sortHigh,
   };
 };
 

@@ -47,6 +47,31 @@ router.route('/new')
     res.render('product_new');
   });
 
+router.route('/sort')
+  .get((req, res) => {
+    productDataBase.sort()
+    .then(data =>{
+      console.log(data);
+      res.render('index', {
+        products: data
+      });
+    });
+});
+
+router.route('/sort/high')
+  .get((req, res) => {
+    productDataBase.sortHigh()
+    .then(data =>{
+      console.log(data);
+      res.render('index', {
+        products: data
+      });
+    });
+});
+
+
+
+
 router.route('/:id')
   .get(( req, res ) =>{
     console.log(req.path);
@@ -105,4 +130,4 @@ router.route('/:id/edit')
          products: data
        });
     });
-});
+  });

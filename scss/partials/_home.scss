@@ -1,0 +1,23 @@
+#homeButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px;
+}
+
+#titleHeader{
+  text-align: center;
+  color: blue;
+  font-size: 40px;
+}
+
+#homeImage{
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+#homeBackground{
+  height: 100%;
+  background-color: black;
+}
