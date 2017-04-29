@@ -8,76 +8,28 @@ module.exports = router;
 
 router.route('/')
   .get(( req, res ) => {
-    let articleData = (articleDataBase.get());
-    res.render('artindex', {
-      articles: articleData
-    });
+    articleDataBase.get()
+      .then((data) => {
+        res.render('article_index', {
+          article: data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   })
 
   .post(( req, res ) => {
-    if(articleDataBase.post(req.body) === true){
-    let articleData = (articleDataBase.get());
-    res.render('artindex', {
-      articles: articleData
-    });
-    } else {
-      res.json({success: false});
-    }
-  })
-
-  .put(( req, res ) => {
-    res.send('hit put');
-  })
-
-  .delete(( req, res ) =>{
-    res.send('hit delete');
+    let article_title = req.body.title;
+    let article_body = req.body.body;
+    console.log(req.body.body);
+    let article_author = req.body.author;
+    articleDataBase.post(article_title, article_body, article_author)
+      .then(data => {
+        console.log(data);
+        res.render('articles', {
+          articles: data
+        });
+      });
   });
 
-router.route('/new')
-  .get((req,res) =>{
-    res.render('article_new');
-  });
-
-router.route('/:id')
-  .get(( req, res ) =>{
-    let articleData = articleDataBase.get(req.path);
-     res.render('article', {
-       articles: articleData
-     });
-  })
-
-  .post(( req, res) =>{
-    res.send( 'hit id post');
-  })
-
-  .put(( req, res) =>{
-    if(articleDataBase.put(req) === true){
-      let articleData = articleDataBase.get();
-      res.render('artindex', {
-      articles: articleData
-    });
-
-    } else{
-      res.json({success: false});
-    }
-  })
-
-  .delete (( req, res ) =>{
-    articleDataBase.deleteArticle(req.path);
-    let articleData = articleDataBase.get();
-      res.render('artindex', {
-      articles: articleData
-    });
-  });
-
-router.route('/:id/edit')
-  .get((req,res) =>{
-
-   let idpath = (req.path.split('/'));
-   idpath.pop();
-
-let articleData = articleDataBase.get(idpath.join('/'));
-     res.render('article_edit', {
-       articles: articleData
-     });
-});

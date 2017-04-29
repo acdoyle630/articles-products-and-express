@@ -2,11 +2,7 @@
 
 const express = require('express');
 
-const pgp = require('pg-promise')();
-
-const db = pgp('postgres://house_user:house@localhost:5432/the_house');
-
-module.exports = db;
+const db = require('./connection');
 
 const productDataBase = () =>{
 
@@ -49,23 +45,6 @@ const productDataBase = () =>{
         console.log('ERROR: ', error);
       });
   }
-
-  // function checkForProduct( name ){
-  //   if(productNames.indexOf(name) < 0){
-  //     return true;
-  //   }
-  // }
-
-  // function checkForProductById(id){
-  //   if(products.length === 0){
-  //     return false;
-  //   }
-  //   for(var i = 0; i < products.length; i++){
-  //     if(products[i].id == id){
-  //       return products[i];
-  //     }
-  //   } return false;
-  // }
 
   return{
     get,

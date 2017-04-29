@@ -1,46 +1,26 @@
 /*jshint esversion: 6*/
 
+/*jshint esversion: 6*/
 
-// db.one('INSERT INTO products (title, body, author) VALUES ($1,$2,$3) RETURNING id', ['Test title', 'test body', 'test author'])
-//   .then(data => {
-//     console.log(data.id);
-//   })
-//   .catch(error =>{
-//     console.log('ERROR:', error);
-//   });
+const express = require('express');
 
+const db = require('./connection');
 
+const articleDataBase = () =>{
 
+  function get(){
+    return db.any('SELECT * FROM articles', [true])
+      .catch((error) =>{
+        console.log(error);
+    });
+  }
 
-
-
-
-// const express = require('express');
-
-// const articleDataBase = () =>{
-//   let articles = [];
-//   let articleNames = [];
-//   currentId = 1;
-
-//   function get ( id ){
-//     if(id){
-//     console.log(id);
-//     searchId = id.split('');
-//     searchId.shift();
-//     return checkForArticleById(searchId.join());
-//   } else{
-//     return articles;
-//   }
-//   }
-//   function post ( article ){
-//     if(checkForarticle(article.title) === true){
-//       article.id = currentId;
-//       currentId ++;
-//       articles.push(article);
-//       articleNames.push(article.title);
-//       return true;
-//     }
-//   }
+  function post ( title, body, author ){
+    return db.one(`INSERT INTO articles (title, body, author) VALUES ($1,$2,$3) RETURNING *`, [title, body, author])
+      .catch(error =>{
+        console.log('Product not found:', error);
+    });
+  }
 
 //   function put( article ){
 //     let id = article.path;
@@ -83,14 +63,14 @@
 //     } return false;
 //   }
 
-//   return{
-//     get,
-//     post,
+  return{
+       get,
+       post,
 //     put,
 //     deleteArticle,
-//   };
-// };
+   };
+ };
 
-// let accessarticles = articleDataBase();
-// module.exports = accessarticles;
+let accessarticles = articleDataBase();
+module.exports = accessarticles;
 
