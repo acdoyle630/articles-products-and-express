@@ -47,6 +47,29 @@ router.route('/new')
     res.render('article_new');
   });
 
+router.route('/sort')
+  .get((req, res) => {
+    articleDataBase.sort()
+    .then(data=> {
+      console.log(data);
+    res.render('article_index', {
+      articles: data
+      });
+    });
+  });
+
+router.route('/sort/high')
+  .get((req, res) => {
+    articleDataBase.sortHigh()
+    .then(data=> {
+      console.log(data);
+    res.render('article_index', {
+      articles: data
+      });
+    });
+  });
+
+
 router.route('/:id')
   .get(( req, res ) =>{
     console.log(req.path);

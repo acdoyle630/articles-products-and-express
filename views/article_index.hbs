@@ -1,12 +1,24 @@
 <h1>Article List</h1>
 
+<div id ='artSortButtons'>
+<form method = 'GET' action = "/articles/sort">
+  <button>SORT BY A - Z title</button>
+  </form>
+
+<form method = 'GET' action = "/articles/sort/high">
+  <button>SORT BY Z - A title</button>
+  </form>
+</div>
+
 {{#each articles}}
+<div class ="articleMain">
   <h2>Title: {{title}}</h2>
   <h3>Body: {{body}}</h3>
   <h3>Author: {{author}}</h3>
   <form action="articles/{{id}}/edit">
-    <button>EDIT</button>
+    <button id = 'artEditButton'>EDIT</button>
   </form>
+</div>
 {{/each}}
 
 <form method='GET' action="/">

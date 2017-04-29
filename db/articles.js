@@ -47,6 +47,20 @@ function deleteArticle(id){
         console.log('ERROR: ', error);
       });
   }
+
+function sort(){
+    return db.any('SELECT * FROM articles ORDER BY title ASC', [true])
+      .catch(error=>{
+        console.log('ERROR: ', error);
+      });
+}
+
+function sortHigh(){
+    return db.any('SELECT * FROM articles ORDER BY title DESC', [true])
+      .catch(error=>{
+        console.log('ERROR: ', error);
+      });
+}
 //
 
   return{
@@ -55,6 +69,8 @@ function deleteArticle(id){
        getID,
        put,
        deleteArticle,
+       sort,
+       sortHigh,
    };
  };
 

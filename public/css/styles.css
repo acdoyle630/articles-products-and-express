@@ -35,3 +35,18 @@
 #homeBackground {
   height: 100%;
   background-color: black; }
+
+.articleMain {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: blue; }
+
+#artEditButton {
+  height: 80%;
+  margin-right: 10px;
+  color: blue; }
+
+#artSortButtons {
+  display: flex;
+  flex-direction: row; }
