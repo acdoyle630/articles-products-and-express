@@ -19,9 +19,12 @@
   "homepage": "https://github.com/acdoyle630/articles-products-and-express#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "browser-sync": "^2.18.8",
     "chai": "^3.5.0",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
     "method-override": "^2.3.8",
     "mocha": "^3.2.0",
     "pg-promise": "^5.6.7",
